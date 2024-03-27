@@ -1,6 +1,8 @@
 package com.wenyi.portfolio.controller;
 
+import com.wenyi.portfolio.model.StockReport;
 import com.wenyi.portfolio.model.Transaction;
+import com.wenyi.portfolio.repositories.TransactionRepo;
 import com.wenyi.portfolio.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,19 +28,9 @@ public class TransactionController {
         return transactionService.retrieveTransactionsByTickerSymbol(tickerSymbol);
     }
 
-    @GetMapping("/transactions/average-price")
-    private Map<String, Float> getAllAveragePrice() {
-        return transactionService.getAveragePrice();
-    }
-
-    @GetMapping("/transactions/get-stock-count")
-    private Map<String, Integer> getStockCounts() {
-        return transactionService.retrieveStockCount();
-    }
-
-    @GetMapping("/transactions/get-total-price")
-    private Map<String, Float> getAllTotalPrice() {
-        return transactionService.getTotalPrice();
+    @GetMapping("/transactions/get-report")
+    private List<StockReport> getAllReport() {
+        return transactionService.getReport();
     }
 
 }
